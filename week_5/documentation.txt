@@ -1,0 +1,88 @@
+===========================================
+OOP Lab Tutorial - Week 5
+Student Information System
+===========================================
+
+2.1 Why are the variables declared as private?
+
+Variables are declared as private to implement encapsulation, which is one of the 
+fundamental principles of Object-Oriented Programming (OOP). Private variables 
+cannot be accessed directly from outside the class, ensuring that the internal 
+state of an object is protected from unauthorized or unintended modifications.
+
+Benefits of private variables:
+- Data hiding: The internal implementation details are hidden from external classes
+- Controlled access: Only through public methods (getters/setters) can the data be accessed
+- Security: Prevents accidental corruption of data
+- Flexibility: Internal representation can change without affecting external code
+- Maintainability: Changes to the class don't break code that uses it
+
+===========================================
+
+2.2 What happens if the variables are declared public?
+
+If variables are declared public, they become directly accessible from anywhere 
+in the program. This leads to several problems:
+
+1. Loss of Control: Any external class can modify the variables without any 
+   validation or checking.
+   Example: student.cgpa = 5.0; // Invalid CGPA value but would be allowed
+
+2. Security Risk: Sensitive data becomes exposed and can be tampered with.
+   Example: student.studentID = "HACKED"; // No validation
+
+3. Tight Coupling: External classes become dependent on the internal structure 
+   of the Student class.
+
+4. Maintenance Issues: If the data representation changes (e.g., storing name 
+   as firstName+lastName instead of fullName), all external code must be updated.
+
+5. No Validation: Direct access bypasses any validation logic that might be 
+   needed.
+   Example: A CGPA of 5.0 would be accepted without validation
+
+===========================================
+
+2.3 Why do we use getters and setters?
+
+Getters and setters provide controlled access to private variables:
+
+GETTERS (Accessor Methods):
+- Allow read-only access to private variables
+- Can format or transform data before returning
+- Can return copies of data to prevent modification
+- Provide a consistent interface for accessing data
+
+SETTERS (Mutator Methods):
+- Allow controlled modification of private variables
+- Can validate data before assigning (e.g., CGPA between 0.0 and 4.0)
+- Can perform additional actions when values change
+- Can enforce business rules and constraints
+
+Benefits of using getters and setters:
+1. Validation: Can check if values are valid before assignment
+2. Debugging: Can add logging to track changes
+3. Calculation: Can compute values on-the-fly (e.g., letter grade from CGPA)
+4. Future-proofing: Internal representation can change without affecting users
+5. Readability: Methods have meaningful names that describe what they do
+
+Example of validation in a setter:
+public void setCGPA(double cgpa) {
+    if (cgpa >= 0.0 && cgpa <= 4.0) {
+        this.cgpa = cgpa;
+    } else {
+        System.out.println("Invalid CGPA! Must be between 0.0 and 4.0");
+    }
+}
+
+===========================================
+
+3. Added a new variable: programme
+
+The programme variable has been added to store the student's academic programme 
+(e.g., Computer Science, Software Engineering, Information Technology, etc.).
+
+This variable follows the same encapsulation principles with its own getter 
+and setter methods.
+
+===========================================
