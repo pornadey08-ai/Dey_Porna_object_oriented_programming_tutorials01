@@ -22,6 +22,19 @@ public class Main {
             System.out.println((i + 1) + ". " + tasks1.get(i));
         }
         
+        // SAVE ACTIVITY 1 TO FILE (creates new file)
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("task.txt"))) {
+            writer.write("===== ACTIVITY 1 TASKS =====");
+            writer.newLine();
+            for (String task : tasks1) {
+                writer.write(task);
+                writer.newLine();
+            }
+            writer.newLine();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        
         // ===== ACTIVITY 2 =====
         System.out.println("\n===== ACTIVITY 2 =====");
         ArrayList<String> tasks2 = new ArrayList<>();
@@ -38,8 +51,10 @@ public class Main {
             System.out.println((i + 1) + ". " + tasks2.get(i));
         }
         
-        // Saving the tasks to a text file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("task.txt"))) {
+        // APPEND ACTIVITY 2 TO FILE (adds to existing file)
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("task.txt", true))) {
+            writer.write("===== ACTIVITY 2 TASKS =====");
+            writer.newLine();
             for (String task : tasks2) {
                 writer.write(task);
                 writer.newLine();
@@ -49,7 +64,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
         
-        // Read from file
+        // ===== READ FROM FILE =====
         System.out.println("\n===== TASKS LOADED FROM FILE =====");
         try (BufferedReader reader = new BufferedReader(new FileReader("task.txt"))) {
             String line;
